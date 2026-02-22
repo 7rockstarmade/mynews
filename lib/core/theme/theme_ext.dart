@@ -1,0 +1,6 @@
+import 'package:flutter/material.dart';
+import 'app_theme_colors.dart';
+
+extension ThemeX on BuildContext {
+  AppThemeColors get appColors => Theme.of(this).extension<AppThemeColors>()!;
+}
