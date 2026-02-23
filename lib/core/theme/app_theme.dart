@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 import 'app_text_styles.dart';
 import 'app_theme_colors.dart';
@@ -17,7 +18,7 @@ class AppTheme {
       brightness: Brightness.light,
       colorScheme: scheme,
       scaffoldBackgroundColor: scheme.surface,
-      textTheme: AppTextStyles.baseTextTheme,
+      textTheme: GoogleFonts.poppinsTextTheme(AppTextStyles.baseTextTheme),
       extensions: const [
         AppThemeColors(
           title: AppColors.titleActive,
@@ -47,7 +48,7 @@ class AppTheme {
       brightness: Brightness.dark,
       colorScheme: scheme,
       scaffoldBackgroundColor: scheme.surface,
-      textTheme: AppTextStyles.baseTextTheme,
+      textTheme: GoogleFonts.poppinsTextTheme(AppTextStyles.baseTextTheme),
       extensions: const [
         AppThemeColors(
           title: AppColors.darkTitle,
