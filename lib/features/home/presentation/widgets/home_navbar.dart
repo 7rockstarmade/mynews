@@ -6,7 +6,12 @@ class HomeNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBarTheme(
-      data: NavigationBarThemeData(indicatorColor: Colors.transparent),
+      data: NavigationBarThemeData(
+        indicatorColor: Colors.transparent,
+        labelTextStyle: WidgetStatePropertyAll(
+          Theme.of(context).textTheme.titleSmall!,
+        ),
+      ),
       child: NavigationBar(
         destinations: [
           NavigationDestination(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mynews/features/home/presentation/widgets/home_app_bar.dart';
-import 'package:mynews/features/home/presentation/widgets/home_nav_bar.dart';
+import 'package:mynews/features/home/presentation/widgets/home_appbar.dart';
+import 'package:mynews/features/home/presentation/widgets/home_navbar.dart';
 
 class HomeShell extends StatelessWidget {
   const HomeShell({super.key});
