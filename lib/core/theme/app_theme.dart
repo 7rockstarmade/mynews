@@ -39,7 +39,7 @@ class AppTheme {
     const scheme = ColorScheme.dark(
       primary: AppColors.primary,
       error: AppColors.error,
-      surface: AppColors.darkInput,
+      surface: AppColors.darkBackground,
       onSurface: AppColors.darkTitle,
     );
 
