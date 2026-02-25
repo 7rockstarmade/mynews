@@ -8,7 +8,7 @@ class HomeShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: homeAppBar(context),
+      appBar: const HomeAppBar(),
       bottomNavigationBar: HomeNavBar(),
     );
   }
