@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:mynews/core/storage/hive.dart';
 import 'package:mynews/core/theme/app_theme.dart';
 import 'package:mynews/core/theme/bloc/theme_bloc.dart';
 import 'package:mynews/core/theme/bloc/theme_state.dart';
@@ -11,7 +13,7 @@ class MyNewsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ThemeBloc(),
+      create: (context) => ThemeBloc(Hive.box(HiveBoxes.settings)),
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp(
