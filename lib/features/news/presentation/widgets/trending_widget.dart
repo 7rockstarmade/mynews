@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mynews/core/theme/theme_ext.dart';
 
-class ArticleWidget extends StatelessWidget {
+class TrendingArticleWidget extends StatelessWidget {
   final String category;
   final String newsTitle;
   final String dateTime;
   final String imgUrl;
-  const ArticleWidget({
+  const TrendingArticleWidget({
     super.key,
     required this.category,
     required this.newsTitle,
@@ -18,18 +18,13 @@ class ArticleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 380,
-      height: 112,
-      child: Row(
-        spacing: 7,
-
+      child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: SizedBox(
-              width: 96,
-              height: 96,
-              child: Image.network(imgUrl, fit: BoxFit.cover),
+            borderRadius: .circular(12),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Image.network(imgUrl, fit: .cover),
             ),
           ),
           Padding(
