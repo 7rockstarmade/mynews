@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mynews/core/theme/theme_ext.dart';
 
 class SettingsItem extends StatelessWidget {
   final String iconPath;
@@ -24,7 +25,10 @@ class SettingsItem extends StatelessWidget {
           Row(
             spacing: 4,
             children: [
-              SvgPicture.asset(iconPath),
+              SvgPicture.asset(
+                iconPath,
+                colorFilter: .mode(context.appColors.title, .srcIn),
+              ),
               Text(title, style: Theme.of(context).textTheme.titleMedium),
             ],
           ),
