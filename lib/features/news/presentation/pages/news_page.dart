@@ -14,7 +14,8 @@ class NewsPage extends StatelessWidget {
           sliver: SliverToBoxAdapter(
             child: TrendingArticleWidget(
               category: "Category",
-              newsTitle: "News",
+              newsTitle:
+                  "News JAsjkd LAsld l LASLKDJAS jLASD LLASDK LASLLASLLASLALKSLAKSLKASLKLASLSLALSLASLASKLSKL",
               dateTime: "dateTime",
               imgUrl:
                   "https://upload.wikimedia.org/wikipedia/commons/3/3b/Icon_of_the_Seas.jpg",
@@ -29,7 +30,8 @@ class NewsPage extends StatelessWidget {
                 padding: EdgeInsetsGeometry.directional(top: 8),
                 child: ArticleWidget(
                   category: "Category",
-                  newsTitle: "News",
+                  newsTitle:
+                      "News AaAAA AAAAAaaA AaAAAA AAAA skmdAKSMD LKASKLD KMAKMSmkdaLKASkld ",
                   dateTime: "dateTime",
                   imgUrl:
                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHpsgmzjuWD7eFzWnsaX1vBcf5-dIFzu_oQ&s",

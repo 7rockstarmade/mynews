@@ -18,11 +18,9 @@ class ArticleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 380,
       height: 112,
       child: Row(
         spacing: 7,
-
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
@@ -32,39 +30,46 @@ class ArticleWidget extends StatelessWidget {
               child: Image.network(imgUrl, fit: BoxFit.cover),
             ),
           ),
-          Padding(
-            padding: EdgeInsetsGeometry.directional(top: 7, bottom: 7),
-            child: Column(
-              spacing: 4,
-              crossAxisAlignment: .start,
-              mainAxisAlignment: .spaceBetween,
-              children: [
-                Text(
-                  category,
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: context.appColors.bodyText,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsetsGeometry.directional(top: 7, bottom: 7),
+              child: Column(
+                spacing: 4,
+                crossAxisAlignment: .start,
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  Text(
+                    category,
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: context.appColors.bodyText,
+                    ),
                   ),
-                ),
-                Text(newsTitle, style: Theme.of(context).textTheme.titleMedium),
-                Row(
-                  spacing: 4,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/clock.svg',
-                      colorFilter: .mode(
-                        context.appColors.bodyText,
-                        BlendMode.srcIn,
+                  Text(
+                    newsTitle,
+                    maxLines: 2,
+                    overflow: .ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Row(
+                    spacing: 4,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/clock.svg',
+                        colorFilter: .mode(
+                          context.appColors.bodyText,
+                          BlendMode.srcIn,
+                        ),
                       ),
-                    ),
-                    Text(
-                      dateTime,
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: context.appColors.bodyText,
+                      Text(
+                        dateTime,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: context.appColors.bodyText,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

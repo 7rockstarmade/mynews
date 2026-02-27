@@ -40,7 +40,12 @@ class TrendingArticleWidget extends StatelessWidget {
                     color: context.appColors.bodyText,
                   ),
                 ),
-                Text(newsTitle, style: Theme.of(context).textTheme.titleMedium),
+                Text(
+                  newsTitle,
+                  maxLines: 2,
+                  overflow: .ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 Row(
                   spacing: 4,
                   children: [
