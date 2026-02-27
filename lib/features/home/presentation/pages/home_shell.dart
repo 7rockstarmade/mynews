@@ -17,7 +17,7 @@ class HomeShell extends StatelessWidget {
       child: BlocBuilder<NavBloc, NavState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: HomeAppBar(index: state.index),
+            appBar: HomeAppBar(),
             body: IndexedStack(index: state.index, children: pages),
             bottomNavigationBar: HomeNavBar(),
           );
