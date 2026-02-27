@@ -7,40 +7,45 @@ class NewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
-          sliver: SliverToBoxAdapter(
-            child: TrendingArticleWidget(
-              category: "Category",
-              newsTitle:
-                  "News JAsjkd LAsld l LASLKDJAS jLASD LLASDK LASLLASLLASLALKSLAKSLKASLKLASLSLALSLASLASKLSKL",
-              dateTime: "dateTime",
-              imgUrl:
-                  "https://upload.wikimedia.org/wikipedia/commons/3/3b/Icon_of_the_Seas.jpg",
+    return RefreshIndicator.adaptive(
+      onRefresh: () async {
+        await Future.delayed(Duration(milliseconds: 1));
+      },
+      child: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
+            sliver: SliverToBoxAdapter(
+              child: TrendingArticleWidget(
+                category: "Category",
+                newsTitle:
+                    "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi.",
+                dateTime: "dateTime",
+                imgUrl:
+                    "https://upload.wikimedia.org/wikipedia/commons/3/3b/Icon_of_the_Seas.jpg",
+              ),
             ),
           ),
-        ),
-        SliverPadding(
-          padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return Padding(
-                padding: EdgeInsetsGeometry.directional(top: 8),
-                child: ArticleWidget(
-                  category: "Category",
-                  newsTitle:
-                      "News AaAAA AAAAAaaA AaAAAA AAAA skmdAKSMD LKASKLD KMAKMSmkdaLKASkld ",
-                  dateTime: "dateTime",
-                  imgUrl:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHpsgmzjuWD7eFzWnsaX1vBcf5-dIFzu_oQ&s",
-                ),
-              );
-            }),
+          SliverPadding(
+            padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return Padding(
+                  padding: EdgeInsetsGeometry.directional(top: 8),
+                  child: ArticleWidget(
+                    category: "Category",
+                    newsTitle:
+                        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi.",
+                    dateTime: "dateTime",
+                    imgUrl:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHpsgmzjuWD7eFzWnsaX1vBcf5-dIFzu_oQ&s",
+                  ),
+                );
+              }),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
