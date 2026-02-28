@@ -4,7 +4,7 @@ import 'package:mynews/features/news/presentation/bloc/news_event.dart';
 import 'package:mynews/features/news/presentation/bloc/news_state.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
-  final NewsRepositotry repo;
+  final NewsRepository repo;
   NewsBloc(this.repo) : super(NewsState.initial()) {
     on<GetTopHeadlines>(_getTopHeadlines);
   }

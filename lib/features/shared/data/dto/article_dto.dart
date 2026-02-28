@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mynews/features/news/data/dto/source_dto.dart';
+import 'package:mynews/features/shared/data/dto/source_dto.dart';
 
 part 'article_dto.freezed.dart';
 part 'article_dto.g.dart';

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mynews/features/search/data/repository/search_repository.dart';
+import 'package:mynews/features/search/presentation/bloc/search_bloc.dart';
+import 'package:mynews/features/search/presentation/bloc/search_state.dart';
 import 'package:mynews/features/shared/article_widget.dart';
 import 'package:mynews/features/search/presentation/widgets/search_widget.dart';
 
@@ -7,31 +11,52 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: EdgeInsetsGeometry.all(16),
-          sliver: SliverToBoxAdapter(child: SearchWidget()),
-        ),
-        SliverPadding(
-          padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return Padding(
-                padding: EdgeInsetsGeometry.directional(top: 8),
-                child: ArticleWidget(
-                  category: "Category",
-                  newsTitle:
-                      "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi.",
-                  dateTime: "dateTime",
-                  imgUrl:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHpsgmzjuWD7eFzWnsaX1vBcf5-dIFzu_oQ&s",
-                ),
-              );
-            }),
+    final repo = context.read<SearchRepository>();
+    return BlocProvider(
+      create: (context) => SearchBloc(repo),
+      child: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsetsGeometry.all(16),
+            sliver: SliverToBoxAdapter(child: SearchWidget()),
           ),
-        ),
-      ],
+          BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              return state.when(
+                initial: () => SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(child: Text("Search me!")),
+                ),
+                loading: () => SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(child: CircularProgressIndicator.adaptive()),
+                ),
+                loaded: (articles) => SliverPadding(
+                  padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: articles.length,
+                      (context, index) {
+                        final article = articles[index];
+                        return Padding(
+                          padding: EdgeInsetsGeometry.directional(top: 8),
+                          child: ArticleWidget(
+                            category: article.sourceName,
+                            newsTitle: article.title,
+                            dateTime: article.publishedAt.toString(),
+                            imgUrl: article.imageUrl.toString(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                loadFailure: (message) => Text('error'),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

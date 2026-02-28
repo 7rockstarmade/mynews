@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mynews/features/news/data/repository/news_repositotry.dart';
+import 'package:mynews/features/news/presentation/bloc/news_bloc.dart';
+import 'package:mynews/features/news/presentation/bloc/news_event.dart';
+import 'package:mynews/features/news/presentation/bloc/news_state.dart';
 import 'package:mynews/features/shared/article_widget.dart';
 import 'package:mynews/features/news/presentation/widgets/trending_widget.dart';
 
@@ -7,44 +12,65 @@ class NewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator.adaptive(
-      onRefresh: () async {
-        await Future.delayed(Duration(milliseconds: 1));
-      },
-      child: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
-            sliver: SliverToBoxAdapter(
-              child: TrendingArticleWidget(
-                category: "Category",
-                newsTitle:
-                    "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi.",
-                dateTime: "dateTime",
-                imgUrl:
-                    "https://upload.wikimedia.org/wikipedia/commons/3/3b/Icon_of_the_Seas.jpg",
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: EdgeInsetsGeometry.directional(start: 16, end: 16),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return Padding(
-                  padding: EdgeInsetsGeometry.directional(top: 8),
-                  child: ArticleWidget(
-                    category: "Category",
-                    newsTitle:
-                        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi.",
-                    dateTime: "dateTime",
-                    imgUrl:
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHpsgmzjuWD7eFzWnsaX1vBcf5-dIFzu_oQ&s",
-                  ),
-                );
-              }),
-            ),
-          ),
-        ],
+    final repo = context.read<NewsRepository>();
+    return BlocProvider(
+      create: (context) => NewsBloc(repo)..add(GetTopHeadlines()),
+      child: BlocBuilder<NewsBloc, NewsState>(
+        builder: (context, state) {
+          return state.when(
+            initial: () => Center(child: CircularProgressIndicator.adaptive()),
+            loading: () => Center(child: CircularProgressIndicator.adaptive()),
+            loaded: (articles) {
+              return RefreshIndicator.adaptive(
+                onRefresh: () async {
+                  context.read<NewsBloc>().add(GetTopHeadlines());
+                },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverPadding(
+                      padding: EdgeInsetsGeometry.directional(
+                        start: 16,
+                        end: 16,
+                      ),
+                      sliver: SliverToBoxAdapter(
+                        child: TrendingArticleWidget(
+                          category: articles[0].sourceName,
+                          newsTitle: articles[0].title,
+                          dateTime: articles[0].publishedAt.toString(),
+                          imgUrl: articles[0].imageUrl.toString(),
+                        ),
+                      ),
+                    ),
+                    SliverPadding(
+                      padding: EdgeInsetsGeometry.directional(
+                        start: 16,
+                        end: 16,
+                      ),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          childCount: articles.length,
+                          (context, index) {
+                            final article = articles[index + 1];
+                            return Padding(
+                              padding: EdgeInsetsGeometry.directional(top: 8),
+                              child: ArticleWidget(
+                                category: article.sourceName,
+                                newsTitle: article.title,
+                                dateTime: article.publishedAt.toString(),
+                                imgUrl: article.imageUrl.toString(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            loadFailure: (m) => Text("error"),
+          );
+        },
       ),
     );
   }

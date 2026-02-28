@@ -1,5 +1,5 @@
-import 'package:mynews/features/news/data/dto/article_dto.dart';
-import 'package:mynews/features/news/data/models/article.dart';
+import 'package:mynews/features/shared/data/dto/article_dto.dart';
+import 'package:mynews/features/shared/data/models/article.dart';
 
 extension ArticleMapper on ArticleDto {
   Article toModel() {
