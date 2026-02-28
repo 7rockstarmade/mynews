@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mynews/features/news/presentation/widgets/article_widget.dart';
+import 'package:mynews/features/shared/article_widget.dart';
 import 'package:mynews/features/news/presentation/widgets/trending_widget.dart';
 
 class NewsPage extends StatelessWidget {
