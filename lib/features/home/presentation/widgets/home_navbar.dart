@@ -9,11 +9,13 @@ import 'package:mynews/features/home/presentation/bloc/nav_state.dart';
 class HomeNavBar extends StatelessWidget {
   const HomeNavBar({super.key});
 
-  SvgPicture _navIcon(BuildContext context, String assetPath) {
+  SvgPicture _navIcon(BuildContext context, String assetPath, bool isSelected) {
     return SvgPicture.asset(
       assetPath,
       colorFilter: ColorFilter.mode(
-        context.appColors.bodyText,
+        isSelected
+            ? Theme.of(context).colorScheme.primary
+            : context.appColors.bodyText,
         BlendMode.srcIn,
       ),
     );
@@ -27,11 +29,16 @@ class HomeNavBar extends StatelessWidget {
           data: NavigationBarThemeData(
             indicatorColor: Colors.transparent,
 
-            labelTextStyle: WidgetStatePropertyAll(
-              Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: context.appColors.bodyText,
-              ),
-            ),
+            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((
+              states,
+            ) {
+              final isSelected = states.contains(WidgetState.selected);
+              return Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : context.appColors.bodyText,
+              );
+            }),
           ),
           child: NavigationBar(
             selectedIndex: state.index,
@@ -40,20 +47,40 @@ class HomeNavBar extends StatelessWidget {
             },
             destinations: [
               NavigationDestination(
-                icon: _navIcon(context, 'assets/icons/home.svg'),
+                icon: _navIcon(context, 'assets/icons/home.svg', false),
+                selectedIcon: _navIcon(
+                  context,
+                  'assets/icons/home_selected.svg',
+                  true,
+                ),
                 label: "Home",
               ),
               NavigationDestination(
-                icon: _navIcon(context, "assets/icons/explore.svg"),
-                label: "Explore",
+                icon: _navIcon(context, "assets/icons/explore.svg", false),
+                selectedIcon: _navIcon(
+                  context,
+                  'assets/icons/explore_selected.svg',
+                  true,
+                ),
+                label: "Search",
               ),
               NavigationDestination(
-                icon: _navIcon(context, "assets/icons/bookmark.svg"),
+                icon: _navIcon(context, "assets/icons/bookmark.svg", false),
+                selectedIcon: _navIcon(
+                  context,
+                  'assets/icons/bookmark_selected.svg',
+                  true,
+                ),
                 label: "Bookmark",
               ),
               NavigationDestination(
-                icon: _navIcon(context, "assets/icons/profile.svg"),
-                label: "Profile",
+                icon: _navIcon(context, "assets/icons/profile.svg", false),
+                selectedIcon: _navIcon(
+                  context,
+                  'assets/icons/profile_selected.svg',
+                  true,
+                ),
+                label: "Settings",
               ),
             ],
           ),
