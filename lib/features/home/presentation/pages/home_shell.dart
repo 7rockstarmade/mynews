@@ -5,6 +5,7 @@ import 'package:mynews/features/home/presentation/bloc/nav_state.dart';
 import 'package:mynews/features/home/presentation/widgets/home_appbar.dart';
 import 'package:mynews/features/home/presentation/widgets/home_navbar.dart';
 import 'package:mynews/features/news/presentation/pages/news_page.dart';
+import 'package:mynews/features/search/presentation/pages/search_page.dart';
 import 'package:mynews/features/settings/presentation/pages/settings_page.dart';
 
 class HomeShell extends StatelessWidget {
@@ -12,7 +13,7 @@ class HomeShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [NewsPage(), NewsPage(), NewsPage(), SettingsPage()];
+    final pages = [NewsPage(), SearchPage(), NewsPage(), SettingsPage()];
     return BlocProvider(
       create: (_) => NavBloc(),
       child: BlocBuilder<NavBloc, NavState>(
