@@ -5,7 +5,7 @@ import 'package:mynews/features/news/data/repository/news_repositotry.dart';
 import 'package:mynews/features/news/presentation/bloc/news_bloc.dart';
 import 'package:mynews/features/news/presentation/bloc/news_event.dart';
 import 'package:mynews/features/news/presentation/bloc/news_state.dart';
-import 'package:mynews/features/shared/article_widget.dart';
+import 'package:mynews/features/shared/presentation/article_widget.dart';
 import 'package:mynews/features/news/presentation/widgets/trending_widget.dart';
 
 class NewsPage extends StatelessWidget {
@@ -68,6 +68,7 @@ class NewsPage extends StatelessWidget {
                                   article.publishedAt.toLocal(),
                                 ),
                                 imgUrl: article.imageUrl.toString(),
+                                article: article,
                               ),
                             );
                           },

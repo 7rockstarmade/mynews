@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:mynews/features/search/data/repository/search_repository.dart';
 import 'package:mynews/features/search/presentation/bloc/search_bloc.dart';
 import 'package:mynews/features/search/presentation/bloc/search_state.dart';
-import 'package:mynews/features/shared/article_widget.dart';
+import 'package:mynews/features/shared/presentation/article_widget.dart';
 import 'package:mynews/features/search/presentation/widgets/search_widget.dart';
 
 class SearchPage extends StatelessWidget {
@@ -53,6 +53,7 @@ class SearchPage extends StatelessWidget {
                               article.publishedAt.toLocal(),
                             ),
                             imgUrl: article.imageUrl,
+                            article: article,
                           ),
                         );
                       },
