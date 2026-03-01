@@ -71,7 +71,7 @@ class HomeNavBar extends StatelessWidget {
                   'assets/icons/bookmark_selected.svg',
                   true,
                 ),
-                label: "Bookmark",
+                label: "Recent",
               ),
               NavigationDestination(
                 icon: _navIcon(context, "assets/icons/profile.svg", false),

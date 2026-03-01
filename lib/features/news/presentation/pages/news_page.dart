@@ -4,6 +4,9 @@ import 'package:mynews/features/news/data/repository/news_repositotry.dart';
 import 'package:mynews/features/news/presentation/bloc/news_bloc.dart';
 import 'package:mynews/features/news/presentation/bloc/news_event.dart';
 import 'package:mynews/features/news/presentation/bloc/news_state.dart';
+import 'package:mynews/features/recent/presentation/bloc/recent_bloc.dart';
+import 'package:mynews/features/recent/presentation/bloc/recent_event.dart';
+import 'package:mynews/features/shared/presentation/article_page.dart';
 import 'package:mynews/features/shared/presentation/article_widget.dart';
 import 'package:mynews/features/news/presentation/widgets/trending_widget.dart';
 
@@ -33,7 +36,20 @@ class NewsPage extends StatelessWidget {
                         end: 16,
                       ),
                       sliver: SliverToBoxAdapter(
-                        child: TrendingArticleWidget(article: articles[0]),
+                        child: InkWell(
+                          onTap: () {
+                            context.read<RecentBloc>().add(
+                              AddRecent(articles[0]),
+                            );
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    ArticlePage(article: articles[0]),
+                              ),
+                            );
+                          },
+                          child: TrendingArticleWidget(article: articles[0]),
+                        ),
                       ),
                     ),
                     SliverPadding(
@@ -48,7 +64,20 @@ class NewsPage extends StatelessWidget {
                             final article = articles[index + 1];
                             return Padding(
                               padding: EdgeInsetsGeometry.directional(top: 8),
-                              child: ArticleWidget(article: article),
+                              child: InkWell(
+                                onTap: () {
+                                  context.read<RecentBloc>().add(
+                                    AddRecent(article),
+                                  );
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          ArticlePage(article: article),
+                                    ),
+                                  );
+                                },
+                                child: ArticleWidget(article: article),
+                              ),
                             );
                           },
                         ),

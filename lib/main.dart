@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:mynews/app.dart';
+import 'package:mynews/core/storage/hive_init.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  await Hive.initFlutter();
-  await Hive.openBox('settings');
+  await HiveInit.init();
   runApp(const MyNewsApp());
 }

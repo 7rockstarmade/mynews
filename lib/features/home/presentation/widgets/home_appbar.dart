@@ -13,7 +13,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     final Map<int, String> titles = {
       0: 'MyNews',
       1: 'Search',
-      2: 'Bookmark',
+      2: 'Recent',
       3: 'Settings',
     };
 

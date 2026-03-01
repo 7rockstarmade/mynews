@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:mynews/core/theme/theme_ext.dart';
 import 'package:mynews/features/shared/data/models/article.dart';
-import 'package:mynews/features/shared/presentation/article_page.dart';
 
 class TrendingArticleWidget extends StatelessWidget {
   final Article article;
@@ -14,64 +13,57 @@ class TrendingArticleWidget extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => ArticlePage(article: article)),
-        );
-      },
-      child: SizedBox(
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: .circular(12),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Image.network(article.imageUrl!, fit: .cover),
-              ),
+    return SizedBox(
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: .circular(12),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Image.network(article.imageUrl!, fit: .cover),
             ),
-            Padding(
-              padding: EdgeInsetsGeometry.directional(top: 7, bottom: 7),
-              child: Column(
-                spacing: 4,
-                crossAxisAlignment: .start,
-                mainAxisAlignment: .spaceBetween,
-                children: [
-                  Text(
-                    article.sourceName,
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: context.appColors.bodyText,
+          ),
+          Padding(
+            padding: EdgeInsetsGeometry.directional(top: 7, bottom: 7),
+            child: Column(
+              spacing: 4,
+              crossAxisAlignment: .start,
+              mainAxisAlignment: .spaceBetween,
+              children: [
+                Text(
+                  article.sourceName,
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: context.appColors.bodyText,
+                  ),
+                ),
+                Text(
+                  article.title,
+                  maxLines: 2,
+                  overflow: .ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Row(
+                  spacing: 4,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/clock.svg',
+                      colorFilter: .mode(
+                        context.appColors.bodyText,
+                        BlendMode.srcIn,
+                      ),
                     ),
-                  ),
-                  Text(
-                    article.title,
-                    maxLines: 2,
-                    overflow: .ellipsis,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Row(
-                    spacing: 4,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/clock.svg',
-                        colorFilter: .mode(
-                          context.appColors.bodyText,
-                          BlendMode.srcIn,
-                        ),
+                    Text(
+                      _newsDateFormat.format(article.publishedAt.toLocal()),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: context.appColors.bodyText,
                       ),
-                      Text(
-                        _newsDateFormat.format(article.publishedAt.toLocal()),
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: context.appColors.bodyText,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

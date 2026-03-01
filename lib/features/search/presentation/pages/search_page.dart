@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mynews/features/recent/presentation/bloc/recent_bloc.dart';
+import 'package:mynews/features/recent/presentation/bloc/recent_event.dart';
 import 'package:mynews/features/search/data/repository/search_repository.dart';
 import 'package:mynews/features/search/presentation/bloc/search_bloc.dart';
 import 'package:mynews/features/search/presentation/bloc/search_state.dart';
+import 'package:mynews/features/shared/presentation/article_page.dart';
 import 'package:mynews/features/shared/presentation/article_widget.dart';
 import 'package:mynews/features/search/presentation/widgets/search_widget.dart';
 
@@ -40,7 +43,19 @@ class SearchPage extends StatelessWidget {
                         final article = articles[index];
                         return Padding(
                           padding: EdgeInsetsGeometry.directional(top: 8),
-                          child: ArticleWidget(article: article),
+                          child: InkWell(
+                            onTap: () {
+                              context.read<RecentBloc>().add(
+                                AddRecent(article),
+                              );
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => ArticlePage(article: article),
+                                ),
+                              );
+                            },
+                            child: ArticleWidget(article: article),
+                          ),
                         );
                       },
                     ),
