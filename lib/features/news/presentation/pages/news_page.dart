@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:mynews/features/news/data/repository/news_repositotry.dart';
 import 'package:mynews/features/news/presentation/bloc/news_bloc.dart';
 import 'package:mynews/features/news/presentation/bloc/news_event.dart';
@@ -10,11 +9,6 @@ import 'package:mynews/features/news/presentation/widgets/trending_widget.dart';
 
 class NewsPage extends StatelessWidget {
   const NewsPage({super.key});
-
-  static final DateFormat _newsDateFormat = DateFormat(
-    'dd MMM, HH:mm',
-    'en_US',
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +33,7 @@ class NewsPage extends StatelessWidget {
                         end: 16,
                       ),
                       sliver: SliverToBoxAdapter(
-                        child: TrendingArticleWidget(
-                          category: articles[0].sourceName,
-                          newsTitle: articles[0].title,
-                          dateTime: _newsDateFormat.format(
-                            articles[0].publishedAt.toLocal(),
-                          ),
-                          imgUrl: articles[0].imageUrl.toString(),
-                        ),
+                        child: TrendingArticleWidget(article: articles[0]),
                       ),
                     ),
                     SliverPadding(
@@ -61,15 +48,7 @@ class NewsPage extends StatelessWidget {
                             final article = articles[index + 1];
                             return Padding(
                               padding: EdgeInsetsGeometry.directional(top: 8),
-                              child: ArticleWidget(
-                                category: article.sourceName,
-                                newsTitle: article.title,
-                                dateTime: _newsDateFormat.format(
-                                  article.publishedAt.toLocal(),
-                                ),
-                                imgUrl: article.imageUrl.toString(),
-                                article: article,
-                              ),
+                              child: ArticleWidget(article: article),
                             );
                           },
                         ),

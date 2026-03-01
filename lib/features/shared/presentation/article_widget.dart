@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:mynews/core/theme/theme_ext.dart';
 import 'package:mynews/features/shared/data/models/article.dart';
 import 'package:mynews/features/shared/presentation/article_page.dart';
 
 class ArticleWidget extends StatelessWidget {
-  final String category;
-  final String newsTitle;
-  final String dateTime;
-  final String? imgUrl;
   final Article article;
-  const ArticleWidget({
-    super.key,
-    required this.category,
-    required this.newsTitle,
-    required this.dateTime,
-    required this.imgUrl,
-    required this.article,
-  });
-
+  const ArticleWidget({super.key, required this.article});
+  static final DateFormat _newsDateFormat = DateFormat(
+    'dd MMM, HH:mm',
+    'en_US',
+  );
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -37,8 +30,9 @@ class ArticleWidget extends StatelessWidget {
               child: SizedBox(
                 width: 96,
                 height: 96,
-                child: (imgUrl != null && imgUrl!.isNotEmpty)
-                    ? Image.network(imgUrl!, fit: BoxFit.cover)
+                child:
+                    (article.imageUrl != null && article.imageUrl!.isNotEmpty)
+                    ? Image.network(article.imageUrl!, fit: BoxFit.cover)
                     : Image.asset('assets/images/splash_logo.png'),
               ),
             ),
@@ -51,13 +45,13 @@ class ArticleWidget extends StatelessWidget {
                   mainAxisAlignment: .spaceBetween,
                   children: [
                     Text(
-                      category,
+                      article.sourceName,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: context.appColors.bodyText,
                       ),
                     ),
                     Text(
-                      newsTitle,
+                      article.title,
                       maxLines: 2,
                       overflow: .ellipsis,
                       style: Theme.of(context).textTheme.titleMedium,
@@ -73,7 +67,7 @@ class ArticleWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          dateTime,
+                          _newsDateFormat.format(article.publishedAt.toLocal()),
                           style: Theme.of(context).textTheme.bodySmall!
                               .copyWith(color: context.appColors.bodyText),
                         ),

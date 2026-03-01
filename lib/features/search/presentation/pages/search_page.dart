@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:mynews/features/search/data/repository/search_repository.dart';
 import 'package:mynews/features/search/presentation/bloc/search_bloc.dart';
 import 'package:mynews/features/search/presentation/bloc/search_state.dart';
@@ -9,11 +8,6 @@ import 'package:mynews/features/search/presentation/widgets/search_widget.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
-
-  static final DateFormat _newsDateFormat = DateFormat(
-    'dd MMM, HH:mm',
-    'en_US',
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +40,7 @@ class SearchPage extends StatelessWidget {
                         final article = articles[index];
                         return Padding(
                           padding: EdgeInsetsGeometry.directional(top: 8),
-                          child: ArticleWidget(
-                            category: article.sourceName,
-                            newsTitle: article.title,
-                            dateTime: _newsDateFormat.format(
-                              article.publishedAt.toLocal(),
-                            ),
-                            imgUrl: article.imageUrl,
-                            article: article,
-                          ),
+                          child: ArticleWidget(article: article),
                         );
                       },
                     ),
