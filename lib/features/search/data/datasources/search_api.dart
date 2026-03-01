@@ -8,8 +8,8 @@ class SearchApi {
   Future<NewsResponseDto> searchNews(String q) async {
     try {
       final response = await dio.get(
-        '/v2/top-headlines',
-        queryParameters: {'country': 'us', 'q': q},
+        '/v2/everything',
+        queryParameters: {'q': q},
       );
       return NewsResponseDto.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {

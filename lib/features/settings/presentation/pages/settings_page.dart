@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mynews/core/theme/bloc/theme_bloc.dart';
 import 'package:mynews/core/theme/bloc/theme_event.dart';
@@ -33,7 +32,7 @@ class SettingsPage extends StatelessWidget {
               trailing: SizedBox(
                 height: 25,
                 child: CupertinoSwitch(
-                  value: context.read<ThemeBloc>().state.isDarkMode,
+                  value: context.watch<ThemeBloc>().state.isDarkMode,
                   onChanged: (value) {
                     context.read<ThemeBloc>().add(SwitchThemeEvent());
                   },

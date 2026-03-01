@@ -9,7 +9,7 @@ class NewsApi {
     try {
       final response = await dio.get(
         '/v2/top-headlines',
-        queryParameters: {'country': 'us'},
+        queryParameters: {'language': 'en'},
       );
       return NewsResponseDto.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {

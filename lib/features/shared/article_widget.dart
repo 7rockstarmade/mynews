@@ -6,7 +6,7 @@ class ArticleWidget extends StatelessWidget {
   final String category;
   final String newsTitle;
   final String dateTime;
-  final String imgUrl;
+  final String? imgUrl;
   const ArticleWidget({
     super.key,
     required this.category,
@@ -27,7 +27,9 @@ class ArticleWidget extends StatelessWidget {
             child: SizedBox(
               width: 96,
               height: 96,
-              child: Image.network(imgUrl, fit: BoxFit.cover),
+              child: (imgUrl != null && imgUrl!.isNotEmpty)
+                  ? Image.network(imgUrl!, fit: BoxFit.cover)
+                  : Image.asset('assets/images/splash_logo.png'),
             ),
           ),
           Expanded(
