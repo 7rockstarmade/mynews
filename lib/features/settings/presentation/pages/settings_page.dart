@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mynews/core/theme/bloc/theme_bloc.dart';
 import 'package:mynews/core/theme/bloc/theme_event.dart';
+import 'package:mynews/features/settings/presentation/widgets/reset_dialog.dart';
 import 'package:mynews/features/settings/presentation/widgets/settings_item.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -12,21 +13,27 @@ class SettingsPage extends StatelessWidget {
     return ListView.separated(
       padding: EdgeInsetsGeometry.all(16),
       itemCount: 3,
-      separatorBuilder: (context, index) => SizedBox(height: 24),
+      separatorBuilder: (context, index) => SizedBox(height: 30),
       itemBuilder: (context, index) {
         switch (index) {
           case 0:
             return SettingsItem(
+              onTap: () {
+                showResetDialog(context);
+              },
               iconPath: 'assets/icons/notification.svg',
-              title: "Notifications",
+              title: "Clear recents",
             );
           case 1:
             return SettingsItem(
               iconPath: 'assets/icons/help.svg',
-              title: 'Help',
+              title: 'About us',
             );
           case 2:
             return SettingsItem(
+              onTap: () {
+                context.read<ThemeBloc>().add(SwitchThemeEvent());
+              },
               iconPath: 'assets/icons/theme_mode.svg',
               title: 'Dark Mode',
               trailing: SizedBox(

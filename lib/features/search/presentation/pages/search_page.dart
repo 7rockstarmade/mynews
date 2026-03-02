@@ -44,6 +44,9 @@ class SearchPage extends StatelessWidget {
                         return Padding(
                           padding: EdgeInsetsGeometry.directional(top: 8),
                           child: InkWell(
+                            overlayColor: const WidgetStatePropertyAll(
+                              Colors.transparent,
+                            ),
                             onTap: () {
                               context.read<RecentBloc>().add(
                                 AddRecent(article),

@@ -19,6 +19,7 @@ class SettingsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       child: Row(
         mainAxisAlignment: .spaceBetween,
         children: [

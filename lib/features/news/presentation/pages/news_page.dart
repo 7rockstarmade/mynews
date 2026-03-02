@@ -37,6 +37,9 @@ class NewsPage extends StatelessWidget {
                       ),
                       sliver: SliverToBoxAdapter(
                         child: InkWell(
+                          overlayColor: const WidgetStatePropertyAll(
+                            Colors.transparent,
+                          ),
                           onTap: () {
                             context.read<RecentBloc>().add(
                               AddRecent(articles[0]),
@@ -65,6 +68,9 @@ class NewsPage extends StatelessWidget {
                             return Padding(
                               padding: EdgeInsetsGeometry.directional(top: 8),
                               child: InkWell(
+                                overlayColor: const WidgetStatePropertyAll(
+                                  Colors.transparent,
+                                ),
                                 onTap: () {
                                   context.read<RecentBloc>().add(
                                     AddRecent(article),
