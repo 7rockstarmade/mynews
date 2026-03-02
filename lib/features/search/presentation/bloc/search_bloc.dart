@@ -15,8 +15,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async {
     emit(SearchState.loading());
     try {
-      final articles = await repo.getNewsBySearch(event.q);
-      emit(SearchState.loaded(articles));
+      if (event.q == '') {
+        emit(SearchState.initial());
+      } else {
+        final articles = await repo.getNewsBySearch(event.q);
+        emit(SearchState.loaded(articles));
+      }
     } catch (_) {
       emit(SearchState.loadFailure('Network error'));
     }
