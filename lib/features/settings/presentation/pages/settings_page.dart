@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mynews/core/theme/bloc/theme_bloc.dart';
 import 'package:mynews/core/theme/bloc/theme_event.dart';
+import 'package:mynews/features/settings/presentation/widgets/about_us_sheet.dart';
 import 'package:mynews/features/settings/presentation/widgets/reset_dialog.dart';
 import 'package:mynews/features/settings/presentation/widgets/settings_item.dart';
+import 'package:mynews/features/shared/presentation/show_sheet.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -26,6 +28,9 @@ class SettingsPage extends StatelessWidget {
             );
           case 1:
             return SettingsItem(
+              onTap: () {
+                showSheet(context, AboutUsSheet());
+              },
               iconPath: 'assets/icons/help.svg',
               title: 'About us',
             );
