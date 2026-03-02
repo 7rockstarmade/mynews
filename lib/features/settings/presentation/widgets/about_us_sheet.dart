@@ -27,14 +27,26 @@ class AboutUsSheet extends StatelessWidget {
             ).textTheme.displaySmall)!.copyWith(fontWeight: .w600),
           ),
           Text(
-            "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi.",
+            "MyNews is a simple news app that helps you stay updated with top headlines, search topics you care about, and quickly revisit recently opened articles.",
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: .center,
           ),
+
+          Center(
+            child: ClipRRect(
+              borderRadius: .circular(16),
+              child: SizedBox(
+                width: 300,
+                height: 300,
+                child: Image.asset('assets/images/us.jpg', fit: .cover),
+              ),
+            ),
+          ),
+
           Padding(
             padding: EdgeInsetsGeometry.directional(top: 50),
             child: Text(
-              "API : newsapi.org",
+              "github: 7rockstarmade\nAPI : newsapi.org",
               textAlign: .center,
               style: TextStyle(color: context.appColors.bodyText),
             ),

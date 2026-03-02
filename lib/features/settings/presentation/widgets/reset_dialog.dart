@@ -8,7 +8,7 @@ Future<void> showResetDialog(BuildContext context) async {
     context: context,
     useRootNavigator: true,
     builder: (dialogContext) => AlertDialog(
-      title: const Text('Reset data?'),
+      title: const Text('Clear recents?'),
       content: const Text(
         'Recent news will be cleaned. This cannot be undone.',
       ),

@@ -40,6 +40,7 @@ flutter:
   assets:
     - .env
     - assets/icons/
+    - assets/images/
     - assets/images/splash_logo.png
     - assets/images/splash_logo_dark.png
 
