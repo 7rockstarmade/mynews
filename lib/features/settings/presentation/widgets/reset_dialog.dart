@@ -35,23 +35,21 @@ Future<void> showResetDialog(BuildContext context) async {
     ),
   );
 
-  if (ok != true) return;
+  if (!context.mounted || ok != true) return;
 
   context.read<RecentBloc>().add(ClearRecent());
-  if (context.mounted) {
-    showDialog(
-      context: context,
-      useRootNavigator: true,
-      builder: (dialogContext) => AlertDialog(
-        title: Text('Done'),
-        content: Text('Recents have been cleaned!'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
+  await showDialog(
+    context: context,
+    useRootNavigator: true,
+    builder: (dialogContext) => AlertDialog(
+      title: Text('Done'),
+      content: Text('Recents have been cleaned!'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(dialogContext).pop(),
+          child: Text('OK'),
+        ),
+      ],
+    ),
+  );
 }
