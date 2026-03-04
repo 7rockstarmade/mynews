@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mynews/features/recent/data/repository/recent_reposetory.dart';
+import 'package:mynews/features/recent/data/repository/recent_repository.dart';
 import 'package:mynews/features/recent/presentation/bloc/recent_event.dart';
 import 'package:mynews/features/recent/presentation/bloc/recent_state.dart';
 

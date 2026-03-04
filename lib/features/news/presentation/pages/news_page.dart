@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mynews/features/news/data/repository/news_repositotry.dart';
+import 'package:mynews/features/news/data/repository/news_repository.dart';
 import 'package:mynews/features/news/presentation/bloc/news_bloc.dart';
 import 'package:mynews/features/news/presentation/bloc/news_event.dart';
 import 'package:mynews/features/news/presentation/bloc/news_state.dart';

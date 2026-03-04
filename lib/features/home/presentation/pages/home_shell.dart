@@ -10,9 +10,9 @@ import 'package:mynews/features/home/presentation/widgets/home_appbar.dart';
 import 'package:mynews/features/home/presentation/widgets/home_navbar.dart';
 
 import 'package:mynews/features/news/data/datasources/news_api.dart';
-import 'package:mynews/features/news/data/repository/news_repositotry.dart';
+import 'package:mynews/features/news/data/repository/news_repository.dart';
 import 'package:mynews/features/news/presentation/pages/news_page.dart';
-import 'package:mynews/features/recent/data/repository/recent_reposetory.dart';
+import 'package:mynews/features/recent/data/repository/recent_repository.dart';
 import 'package:mynews/features/recent/presentation/bloc/recent_bloc.dart';
 import 'package:mynews/features/recent/presentation/bloc/recent_event.dart';
 import 'package:mynews/features/recent/presentation/pages/recent_page.dart';

@@ -1,5 +1,5 @@
 import 'package:mynews/features/search/data/datasources/search_api.dart';
-import 'package:mynews/features/shared/data/mappers/article_mapper.dart';
+import 'package:mynews/features/shared/data/dto/mappers/article_mapper.dart';
 import 'package:mynews/features/shared/data/models/article.dart';
 
 class SearchRepository {
