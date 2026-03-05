@@ -6,6 +6,5 @@ class HiveBoxes {
 
 class SettingsKeys {
   SettingsKeys._();
-  static const seenOnboarding = 'seen_onboarding';
   static const isDarkTheme = 'isDarkMode';
 }
