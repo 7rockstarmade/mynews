@@ -20,7 +20,14 @@ class TrendingArticleWidget extends StatelessWidget {
             borderRadius: .circular(12),
             child: AspectRatio(
               aspectRatio: 16 / 9,
-              child: Image.network(article.imageUrl!, fit: .cover),
+              child: (article.imageUrl != null && article.imageUrl!.isNotEmpty)
+                  ? Image.network(
+                      article.imageUrl!,
+                      fit: .cover,
+                      errorBuilder: (_, _, _) =>
+                          Image.asset('assets/images/splash_logo.png'),
+                    )
+                  : Image.asset('assets/images/splash_logo.png'),
             ),
           ),
           Padding(

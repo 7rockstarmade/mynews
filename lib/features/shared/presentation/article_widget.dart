@@ -24,7 +24,12 @@ class ArticleWidget extends StatelessWidget {
               width: 96,
               height: 96,
               child: (article.imageUrl != null && article.imageUrl!.isNotEmpty)
-                  ? Image.network(article.imageUrl!, fit: BoxFit.cover)
+                  ? Image.network(
+                      article.imageUrl!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, _, _) =>
+                          Image.asset('assets/images/splash_logo.png'),
+                    )
                   : Image.asset('assets/images/splash_logo.png'),
             ),
           ),
